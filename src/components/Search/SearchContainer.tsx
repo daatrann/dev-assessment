@@ -5,8 +5,8 @@ import { fetchResult } from "../../utils/api";
 import { ISearchResult } from "../../types/index";
 
 const SearchContainer = () => {
-    const [result, setResult] = useState<ISearchResult[]>([]);
-    
+    const [result, setResult] = useState<ISearchResult[] | null>(null);
+
     const onSearch = (keyword: string) => {
         if (!keyword) return;
 
@@ -30,7 +30,7 @@ const SearchContainer = () => {
     return (
         <>
             <SearchBar onSearch={onSearch} />
-            <SearchResult result={result} />
+            {result && <SearchResult result={result} />}
         </>
     );
 };
