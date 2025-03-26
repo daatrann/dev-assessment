@@ -6,10 +6,12 @@ import { fetchSuggestion } from "../../utils/api";
 
 interface ISearchBar {
     onSearch: (keyword: string) => void;
+    onError?: (error: string) => void;
 }
 
 const SearchBar = ({ onSearch }: ISearchBar) => {
     const [showSuggestion, setShowSuggestion] = useState(false);
+    const [showClear, setShowClear] = useState(false);
     const [suggestions, setSuggestions] = useState<string[]>([]);
     const [inputValue, setInputValue] = useState("");
     const [selectedIndex, setSelectedIndex] = useState(-1);
@@ -37,10 +39,13 @@ const SearchBar = ({ onSearch }: ISearchBar) => {
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputValue(e.target.value);
-        if (e.target.value.length >= 2) {
+        if (e.target.value.length > 2) {
             debounceInput(e);
+        }else if(e.target.value.length > 0){
+            setShowClear(true);
         } else {
             setShowSuggestion(false);
+            setShowClear(false);
         }
     };
 
@@ -95,13 +100,15 @@ const SearchBar = ({ onSearch }: ISearchBar) => {
                         onKeyDown={handleKeyDown}
                         className="flex-grow px-3 py-2 focus:outline-none text-sm sm:text-base rounded-lg"
                     />
-                    <button
-                        aria-label="clear"
-                        onClick={handleClear}
-                        className="cursor-pointer p-1"
-                    >
-                        <MdClear />
-                    </button>
+                    {showClear && (
+                        <button
+                            aria-label="clear"
+                            onClick={handleClear}
+                            className="cursor-pointer p-1"
+                        >
+                            <MdClear />
+                        </button>
+                    )}
                 </div>
                 <button
                     onClick={() => onSearch(inputValue)}

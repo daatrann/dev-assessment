@@ -8,3 +8,15 @@ export interface ISearchResult {
     DocumentExcerpt: { Text: string, Hightlight: string };
     DocumentTitle: { Text: string, Hightlight: string };
   }
+
+  export interface ISearchResultResponse {
+    Page: number;
+    PageSize: number;
+    TotalNumberOfResults: number;
+    ResultItems: ISearchResultItem[];
+  }
+  
+  export interface ISearchSuggestionResponse {
+    stemmedQueryTerm: string;
+    suggestions: string[];
+  }
