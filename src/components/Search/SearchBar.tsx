@@ -52,6 +52,7 @@ const SearchBar = ({ onSearch }: ISearchBar) => {
     const handleClear = () => {
         setInputValue("");
         setShowSuggestion(false);
+        setShowClear(false);
         inputRef.current?.focus();
     };
 
