@@ -47,8 +47,8 @@ describe("API Functions", () => {
     const result = await fetchResult("Singapore");
 
     expect(result).toHaveLength(2);
-    expect(result?.[0].DocumentTitle.Text).toBe("Singapore Travel");
-    expect(result?.[1].DocumentTitle.Text).toBe("Malaysia and Singapore");
+    expect(result?.data?.[0].DocumentTitle.Text).toBe("Singapore Travel");
+    expect(result?.data?.[1].DocumentTitle.Text).toBe("Malaysia and Singapore");
   });
 
   it("fetchResult: returns null if ResultItems is missing", async () => {

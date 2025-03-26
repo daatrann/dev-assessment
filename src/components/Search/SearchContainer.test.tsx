@@ -52,7 +52,7 @@ describe("SearchContainer Component", () => {
   });
 
   it("calls fetchResult when a keyword is entered", async () => {
-    vi.mocked(fetchResult).mockResolvedValue(mockResults);
+    vi.mocked(fetchResult).mockResolvedValue({error: null, data: mockResults});
 
     render(<SearchContainer />);
 
@@ -67,7 +67,7 @@ describe("SearchContainer Component", () => {
   });
 
   it("displays search results correctly", async () => {
-    vi.mocked(fetchResult).mockResolvedValue(mockResults);
+    vi.mocked(fetchResult).mockResolvedValue({error: null, data: mockResults});
 
     render(<SearchContainer />);
 
@@ -82,7 +82,7 @@ describe("SearchContainer Component", () => {
   });
 
   it("highlights the searched keyword in results", async () => {
-    vi.mocked(fetchResult).mockResolvedValue(mockResults);
+    vi.mocked(fetchResult).mockResolvedValue({error: null, data: mockResults});
 
     render(<SearchContainer />);
 
